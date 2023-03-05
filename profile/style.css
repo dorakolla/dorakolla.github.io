@@ -134,10 +134,21 @@ gap: 50px;
     display:flex;
     flex-direction: row;
     gap: 100px;
-
+    padding-bottom: 100px;
 }
-#projects h2{
-    padding: 30px;
+
+button{
+    width: 100px;
+    height: 40px;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+}
+a{
+    color: white;
+    text-decoration: none;
 }
 .profile img{
     border-radius: 50%;
