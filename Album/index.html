@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>A4</title>
+</head>
+<body>
+  
+    
+    <div><h1>Responsive Album</h1></div>
+
+    <div id="contextMenu">
+        <div id="it1" class="item">Newtab</div>
+        <div id="it2" class="item">Greyscale</div>
+        <div id="it3" class="item">Increase brightness</div>
+        <div id="it4" class="item">reduce resolution</div>
+        <div id="it5" class="item">create avatar</div>
+        <div id="it6" class="item">duplicate image</div>
+        <div id="it7" class="item">create thumbnail</div>
+        <div id="it8" class="item">QRCode</div>
+
+    </div>
+    <form class="inputCaption" style="visibility: hidden;">
+        <input type="text" for="caption" id="input">
+        <button type="submit" id="submitCaption"></button>
+    </form>
+    <div id="container" class="container">
+        <div id="1d"><img src="https://images.unsplash.com/photo-1675703295843-dc501a6c20cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80" crossorigin="anonymous" alt="" id="1"></div>
+        <div id="2d"><img src="https://images.unsplash.com/photo-1675296321708-2971a2fbd7e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDExNnxGem8zenVPSE42d3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" crossorigin="anonymous" alt="" id="2"></div>
+        <div><img src="https://images.unsplash.com/photo-1675319715803-a5ccd02dcead?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDExNHxGem8zenVPSE42d3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" crossorigin="anonymous" alt="" id="3"></div>
+        <div><img src="https://plus.unsplash.com/premium_photo-1675484743328-02a55f9fb379?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEwOHxGem8zenVPSE42d3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" crossorigin="anonymous" alt="" id="4"></div>
+        <div><img src="https://images.unsplash.com/photo-1675772120474-b9d7811220f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDk0fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" crossorigin="anonymous" alt="" id="5"></div>
+        <div><img src="https://images.unsplash.com/photo-1665932674408-c8b6f3548084?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDc5fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" crossorigin="anonymous" alt="" id="6"></div>
+        <div><img src="https://images.unsplash.com/photo-1675877103442-d1363a938d04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDg0fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" crossorigin="anonymous" alt="" id="7"></div>
+        
+        <div><img src="https://images.unsplash.com/photo-1676807882679-7cb547cc6c54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8TThqVmJMYlRSd3N8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="" id="8"></div>
+        <div><img src="https://images.unsplash.com/photo-1667093060577-02f07eb01585?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDR8RnpvM3p1T0hONnd8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="" id="9"></div>
+        <div><img src="https://images.unsplash.com/photo-1675652426417-a7305afe7dbe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDh8RnpvM3p1T0hONnd8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="" id="10"></div>
+        <div><img src="https://images.unsplash.com/photo-1676026273590-ac4b25e833af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE3fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="" id="11"></div>
+        <div><img src="https://images.unsplash.com/photo-1675842643224-f43b943ee340?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI2fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="" id="12"></div>
+        <div><img src="https://images.unsplash.com/photo-1676152372079-ea267c438983?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDQwfEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="" id="13"></div>
+        <div><img src="https://images.unsplash.com/photo-1676041336934-f95640a8a1b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUwfEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="" id="14"></div>
+        
+        <div><img src="https://images.unsplash.com/photo-1676037073075-914d753b3afb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDU5fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="" id="15"></div>
+        <div><img src="https://images.unsplash.com/photo-1676202614118-46adaf438a04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDY1fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" crossorigin="anonymous" alt="" id="16"></div>
+    </div>
+    <canvas id="qrcode"></canvas>
+    <footer>
+            <script src="script.js"></script>
+            <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+    </footer>
+</body>
+</html>

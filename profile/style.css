@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family:'carter one', cursive;
+    
+}
+.container{
+    display: flex;
+    gap: 100px;
+    flex-direction: column;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+nav ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 15px;
+}
+nav ul a{
+    text-decoration: none;
+    color:black;
+    font-size: 15px;
+}
+/* nav ul a:hover{ 
+    background-color: grey;
+} */
+.Personaldetails{
+
+display: flex;
+flex-direction: coloumn;
+gap: 200px;
+}
+.Details{
+padding-top: 50px;
+display: flex;
+flex-direction: coloumn;
+gap: 30px;
+}
+.carousel-itemactive{
+background-color: lightblue;
+padding: 100px;
+}
+.first{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+}
+.second{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.carousel-control-prev-icon{
+    background-color: blueviolet;
+   
+}
+.carousel-control-next-icon{
+    background-color: blueviolet;
+}
+.skills{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+#Skills{
+    width: 100%;
+}
+.skill img{
+    width: 280px;
+    height: 130px;
+}
+.fa-solid{
+    padding: 10px;
+}
+.fa-solid:hover{
+    color: blueviolet;
+}
+.fa-brands{
+    padding: 20px;
+}
+.fa-brands:hover{
+    color: blueviolet;
+}
+.date{
+    padding-bottom: 10px;
+}
+.Backend{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.Backend span{
+    
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+}
+.skills span{
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    margin-left:500px;
+}
+.Frontend{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    
+
+}
+.Tools{
+display: flex;
+flex-direction: column;
+gap: 50px;
+}
+.Databases{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.ml{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.Projects{
+    display:flex;
+    flex-direction: row;
+    gap: 100px;
+
+}
+#projects h2{
+    padding: 30px;
+}
+.profile img{
+    border-radius: 50%;
+}
+@media only screen and (min-width:576px) {
+    .profile img{
+        width:150px;
+    }
+}
+@media only screen and (min-width:768px) {
+    .profile img{
+        width:200px;
+    }
+}
+@media only screen and (min-width:992px) {
+    .profile img{
+        width:250px;
+    }
+}

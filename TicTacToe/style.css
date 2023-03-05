@@ -1,0 +1,53 @@
+*{
+    padding:0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 54px;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+body{
+    background-color: #ECF2FF;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #3E54AC;
+    
+}
+
+.tictactoe3x3{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+
+}
+.tictactoe4x4{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.tictactoe5x5{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.tictactoe6x6{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+}
+.box{
+    border: 1px solid #3E54AC;
+    height: 80px;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+
+}
