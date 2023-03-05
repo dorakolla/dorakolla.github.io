@@ -13,20 +13,23 @@
 <body>
     <div id="container">
     <h1>Tic Tac Toe</h1>
-    <select name="" id="select">
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        
-
-    </select>
-    <button>Restart</button>
-    
+    <div class="players">
+        <button id="player">2player</button>
+        <button id="player">1player</button>
     </div>
-
-    
+    <form action="">
+        <label for="">select board size</label>
+        <select name="" id="select">
+            <option class="option" value="3">3</option>
+            <option class="option" value="4">4</option>
+            <option class="option" value="5">5</option>
+            <option class="option" value="6">6</option>
+        </select>
+    </form>
+    <button id="restart">Restart</button>
+    </div>
 </body>
+
 <footer>
     <script src="script.js"></script>
 </footer>

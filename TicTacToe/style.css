@@ -49,5 +49,36 @@ body{
     width: 80px;
     text-align: center;
     cursor: pointer;
+}
 
+button{
+    background-color: #3E54AC;
+    color: #ECF2FF;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+#select{
+    padding: 5px 25px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+}
+.option{
+    padding: 0px 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #ECF2FF;
+    color: #3E54AC;
+    border: 1px solid #3E54AC;
+}
+    
+label{
+    font-size: 20px;
+    margin-right: 10px;
 }
