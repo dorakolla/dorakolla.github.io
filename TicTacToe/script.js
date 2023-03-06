@@ -4,6 +4,7 @@ let select=document.querySelector("#select");
 // default board size is 3
 let boardSize=3;
 let restartBtn=document.querySelector("#restart");
+let undoBtn=document.querySelector("#undo");
 createBoard(boardSize);
 
 //select board size
@@ -32,19 +33,53 @@ select.addEventListener("change",function(e){
 }
 )
 playerGame();
+
+let x_arr=[];
+let o_arr=[];
+let stack=[];
+let flag1=true;
+let flag2=true;
+undoBtn.addEventListener("click",function(){
+    let x=stack.pop();
+    let lastBox=document.getElementById(x);
+    if (flag1==true && lastBox.textContent=="X" ){
+        console.log("hello");
+        lastBox.innerText="";
+        flag1=false
+    }
+    else if(flag2==true && lastBox.textContent=="O" ){
+        lastBox.innerText="";
+        flag2=false;
+    }
+}
+)
+
 function playerGame(){
     let arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
     let player="X";
     let board=document.querySelector("#board"+boardSize);
     board.addEventListener("click",function(e){
     if(e.target.className=="box"){
+        if (player=="X"){
+            x_arr.push(e.target.id);
+        }
+        else{
+            o_arr.push(e.target.id);
+        }
+        stack.push(e.target.id);
         e.target.textContent=player;
         arr[e.target.id[0]][e.target.id[1]]=player;
-        player=player=="X"?"O":"X";
+        if (playerWon(arr)){
+            setTimeout(() => {
+            
+             alert("Player "+player+" won");
+            },100);
+        }
+        else{
+            player=player=="X"?"O":"X";
+        }
     }
-   if (playerWon(arr)){
-         alert("Player "+player+" won");
-    }
+ 
     }
     )
 }
@@ -87,29 +122,39 @@ function checkHorizontal(arr){
     let flag=true;
     for (let i = 0; i < boardSize; i++) {
         for (let j = 0; j < boardSize-1; j++) {
-            if(arr[i][j]!=0){
-                if(arr[i][j]!=arr[i][j+1]){
-                    flag=false;
+            if(arr[i][j]!=0 && arr[i][j]==arr[i][j+1]){
+                flag=true;
             } 
+            else{
+                flag=false;
+                break;
             }
+            }
+        if (flag){
+            return true;
         }
-    }
-    if (flag){
-        return true;
-    }
+        }
+
+    
 }
 function checkVertical(arr){
     let flag=true;
     for (let i = 0; i < boardSize; i++) {
         for (let j = 0; j < boardSize-1; j++) {
-            if(arr[j][i]!=0 && arr[j][i]!=arr[j+1][i]){
-                flag=false
+            if(arr[j][i]!=0 && arr[j][i]==arr[j+1][i]){
+                flag=true
             }
+            else{
+                flag=false;
+                break;
+        }
+        }
+        if (flag){
+            console.log("hello");
+            return true;
         }
     }
-    if (flag){
-        return true;
-    }
+   
 }
 function checkDiagonal(arr){
     let flag=true;
