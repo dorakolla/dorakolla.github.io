@@ -55,7 +55,7 @@ undoBtn.addEventListener("click",function(){
 )
 
 function playerGame(){
-    let arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
+    arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
     let player="X";
     let board=document.querySelector("#board"+boardSize);
     board.addEventListener("click",function(e){
@@ -86,6 +86,9 @@ function playerGame(){
 
 restartBtn.addEventListener("click",function(e){
     arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
+    x_arr=[];
+    o_arr=[];
+    stack=[];
     let boxes=document.querySelectorAll(".box");
     boxes.forEach(element => {
         element.textContent="";
@@ -117,6 +120,7 @@ function playerWon(arr){
         return true;
     }
     }
+let winningcomb=[];
 
 function checkHorizontal(arr){
     let flag=true;
@@ -131,6 +135,7 @@ function checkHorizontal(arr){
             }
             }
         if (flag){
+
             return true;
         }
         }

@@ -24,7 +24,7 @@ body{
     grid-template-rows: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
-
+    place-items: center;
 }
 .tictactoe4x4{
     display:grid;

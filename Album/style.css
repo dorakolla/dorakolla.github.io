@@ -13,20 +13,30 @@
 
 h1{
 text-align:center;
-    color: blue;
+    color: #FFBFA9;
     padding: 5px;
     font-size: 50px;
-    font-family:'Montserrat';
+    font-weight: bold;
+    font-family:'carter one';
+    text-shadow: 2px 2px 2px #000000;
 }
 body{
     width: 100%;
-    background-color: #ffebbb;
+    background-color: #0E8388;
 }
 .container{
 display: grid;
 grid-template-columns:1fr ;
 justify-content: space-evenly;
 place-items: center;
+gap: 10px;
+}
+.filter{
+    display: grid;
+    grid-template-columns:auto auto auto auto;
+    justify-content: space-evenly;
+    place-items: center;
+    gap: 10px;
 }
 img{
     width: 375px;
@@ -53,10 +63,19 @@ img{
         place-items: center;
     }
 }
+i{
+    font-size: 30px;
+    color: black;
+    padding: 20px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
 #contextMenu{
     position: fixed;
     z-index: 100;
-    width: 200px;
+    width: 250px;
     background-color: white;
     border-radius: 5px;
     display: none;
@@ -64,7 +83,6 @@ img{
     font-size: 15px;
     font-weight: lighter;
     font-family: Arial, Helvetica, sans-serif;
-
 }
 
 #contextMenu .item{

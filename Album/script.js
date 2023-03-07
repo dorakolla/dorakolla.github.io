@@ -3,8 +3,21 @@ var contextmenu=document.querySelector('#contextMenu')
 var options=document.querySelectorAll(".item")
 var submitCaptionbtn=document.querySelector("submitCaption")
 var container=document.getElementById("container")
+var filterBtn=document.getElementById("filter")
 var test;
-var curr
+var curr;
+let filter={'greyscale':[]};
+filterBtn.addEventListener("click",()=>{
+    container.style.display="none"
+    let filtercont=document.createElement("div")
+    document.body.append(filtercont)
+    filtercont.className="filter"
+    filter.greyscale.forEach(element => {
+        let imagediv=document.createElement("div")
+        imagediv.append(element)
+        filtercont.append(imagediv)
+    });
+})
 scope.addEventListener("contextmenu",(e)=>{
     e.preventDefault();
     // let events=Array.from(e.target.src)
@@ -13,67 +26,6 @@ scope.addEventListener("contextmenu",(e)=>{
     contextmenu.style.left=`${mouseX}px`
     contextmenu.classList.add("visible")
     curr=e
-    
-//     if (curr.target.tagName=='IMG'){
-//         // console.log("I am "+curr.target)
-//         options[1].addEventListener("click",(curr)=>{
-//             curr.target.style.filter="grayscale(100%)";
-//         });
-        
-//         options[0].addEventListener("click",(e)=>{
-//             var newWindow = window.open();
-//             newWindow.document.write(curr.target.src);
-//             newWindow.focus();
-            
-//         })
-//         options[2].addEventListener("click",(e)=>{
-//             console.log("brightness")
-//             curr.target.style.filter="brightness(150%)"
-//         });
-//         options[3].addEventListener("click",(e)=>{
-//         var newImage=reduceResolution(curr.target)
-//         console.log(newImage)
-//         curr.target=newImage
-//     });
-//         options[4].addEventListener("click",(e)=>{
-//             curr.target.style.borderRadius="50%";
-//             curr.target.style.width='150px';
-//             curr.target.style.height='150px';
-//             curr.target.style.display="flex";
-//             curr.target.style.alignItems='center';
-//         })
-//         options[5].addEventListener("click",(e)=>{
-//             test=curr
-//             var duplicateImage=document.createElement('IMG')
-//             var div=document.createElement("div")
-//             // var newImageId=e.target.id
-//             console.log(e);
-//             console.log(curr)
-//             duplicateImage.src=curr.target.src
-//             div.append(duplicateImage)
-//             console.log(curr.target.src)
-//             container.appendChild(div)
-            
-//         })
-//         options[6].addEventListener("click",(e)=>{
-//             document.classList.add("inputCaption")
-//             var div=document.createElement("div")
-//             var thumbnail=document.querySelector("caption").value
-//             var newImageId=curr.target.id
-//             var Imagediv=document.getElementById(newImageId+"d")
-//             Imagediv.appendChild(thumbnail)
-//         })
-
-//         // options[5].addEventListener("click",()=>{
-//         //     var qrcode=new QRCode((e),{
-//         //         text=e.target
-            
-
-//         // })
-
-//     }
-//     return
-
 },false);
 
 contextmenu.addEventListener('click',(event)=>{
@@ -86,9 +38,14 @@ contextmenu.addEventListener('click',(event)=>{
     }
     if(event.target.id=="it2"){
         curr.target.style.filter="grayscale(100%)";
+        filter.greyscale.push(curr.target)
     }
     if(event.target.id=="it3"){
         curr.target.style.filter="brightness(150%)"
+    }
+    if (event.target.id==="it4"){
+        var newImage=reduceResolution(curr.target)
+        curr.target.src=newImage
     }
     if (event.target.id=="it6"){
         test=curr
@@ -105,17 +62,22 @@ contextmenu.addEventListener('click',(event)=>{
             curr.target.style.display="flex";
             curr.target.style.alignItems='center';
     }
-    if (event.target.id==="it4"){
-        var newImage=reduceResolution(curr.target)
-        curr.target.src=newImage
-    }
+    
     // if (event.target.id="it7"){
+
     //     var newImageId=curr.target.id
     //     var Imagediv=document.getElementById(newImageId+"d")
-    //     var inputcaption=document.querySelector(".inputCaption") 
-    //     inputcaption.style.visibility="visible";
+    //     var inputcaption=document.createElement("input")
+    //     inputcaption.setAttribute("type", "text")
+    //     inputcaption.setAttribute("id", "input")
     //     var div=document.createElement("div")
+    //     var submitCaptionbtn=document.createElement("button")
+    //     submitCaptionbtn.innerHTML="Submit Caption"
+    //     submitCaptionbtn.setAttribute("type", "submit")
+    //     Imagediv.appendChild(inputcaption)
+    //     Imagediv.appendChild(submitCaptionbtn)
     //     var thumbnail=document.querySelector("#input").value
+    //     console.log(thumbnail)
     //     var thumbnailh4=document.createElement("h4")
     //     thumbnailh4.innerHTML=thumbnail
     //     Imagediv.appendChild(thumbnailh4)
@@ -124,6 +86,58 @@ contextmenu.addEventListener('click',(event)=>{
         console.log(generateQRCode(curr))
     }
    
+    if(event.target.id=="it9"){
+        console.log(curr.target)
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+    
+        canvas.width = curr.target.width;
+        canvas.height = curr.target.height;
+    
+        ctx.drawImage(curr.target, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < imageData.data.length; i += 4) imageData.data[i] = 255;
+
+        ctx.putImageData(imageData, 0, 0);
+
+        curr.target.src = canvas.toDataURL();
+
+    }
+    if(event.target.id=="it10"){
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+    
+        canvas.width = curr.target.width;
+        canvas.height = curr.target.height;
+    
+        ctx.drawImage(curr.target, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        for (let i = 4; i < imageData.data.length; i += 4) imageData.data[i+1] = 255;
+
+        ctx.putImageData(imageData, 0, 0);
+
+        curr.target.src = canvas.toDataURL();
+
+    }
+    if(event.target.id=="it11"){
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+    
+        canvas.width = curr.target.width;
+        canvas.height = curr.target.height;
+    
+        ctx.drawImage(curr.target, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < imageData.data.length; i += 4) imageData.data[i+2] = 255;
+
+        ctx.putImageData(imageData, 0, 0);
+
+        curr.target.src = canvas.toDataURL();
+
+    }
 });
 
 scope.addEventListener("click",(e)=>{
@@ -132,7 +146,7 @@ scope.addEventListener("click",(e)=>{
     }
 },false);
 
-function reduceResolution(target, callback){
+function reduceResolution(target){
 var img = new Image();
 img.src=target.src
 img.crossOrigin="anonynomous"
@@ -150,16 +164,25 @@ var reducedImageData;
 }
 
 function generateQRCode(e){
-    var qr = new QRCode(document.getElementById("qrcode"), {
-        width : 100,
-        height : 100
-      });
-      
-      var image = new Image();
-      image.src = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
-      image.onload = function() {
-        qr.makeCode(image.src);
-      };
-      
-    return qr
+    const qrCode = new QRCodeStyling({
+        width: 300,
+        height: 300,
+        type: "svg",
+        data:  e.target.src,
+        image: e.target.src,
+        dotsOptions: {
+            color: "#4267b2",
+            type: "rounded"
+        },
+        backgroundOptions: {
+            color: "#e9ebee",
+        },
+        imageOptions: {
+            crossOrigin: "anonymous",
+            margin: 20
+        }
+    });
+
+    qrCode.append(document.getElementById("canvas"));
+    qrCode.download({ name: "qr", extension: "svg" });
 }
