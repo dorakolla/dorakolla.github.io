@@ -63,25 +63,29 @@ contextmenu.addEventListener('click',(event)=>{
             curr.target.style.alignItems='center';
     }
     
-    // if (event.target.id="it7"){
+    if (event.target.id="it7"){
+        var newImageId=curr.target.id
+        var Imagediv=document.getElementById(newImageId+"d")
+        var inputcaption=document.createElement("input")
+        inputcaption.setAttribute("type", "text")
+        var div=document.createElement("div")
+        Imagediv.appendChild(inputcaption)
+        var submitCaptionbtn=document.createElement("button")
+        submitCaptionbtn.innerHTML="Submit"
+        Imagediv.appendChild(submitCaptionbtn)
+        submitCaptionbtn.addEventListener("click",()=>{
+            var thumbnail=inputcaption.value
+            var thumbnailh4=document.createElement("h4")
+            thumbnailh4.innerHTML=thumbnail
+            thumbnailh4.style.color="white"
+            Imagediv.appendChild(thumbnailh4)
+            inputcaption.remove()
+            submitCaptionbtn.remove()
+            curr.target.style.height="280px"
 
-    //     var newImageId=curr.target.id
-    //     var Imagediv=document.getElementById(newImageId+"d")
-    //     var inputcaption=document.createElement("input")
-    //     inputcaption.setAttribute("type", "text")
-    //     inputcaption.setAttribute("id", "input")
-    //     var div=document.createElement("div")
-    //     var submitCaptionbtn=document.createElement("button")
-    //     submitCaptionbtn.innerHTML="Submit Caption"
-    //     submitCaptionbtn.setAttribute("type", "submit")
-    //     Imagediv.appendChild(inputcaption)
-    //     Imagediv.appendChild(submitCaptionbtn)
-    //     var thumbnail=document.querySelector("#input").value
-    //     console.log(thumbnail)
-    //     var thumbnailh4=document.createElement("h4")
-    //     thumbnailh4.innerHTML=thumbnail
-    //     Imagediv.appendChild(thumbnailh4)
-    // }
+        })
+
+    }
     if (event.target.id=="it8"){
         console.log(generateQRCode(curr))
     }
