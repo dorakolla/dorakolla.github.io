@@ -30,6 +30,18 @@ hr{
     margin: 0;
     padding: 0;
 }
+/* #id1{
+    display:flex;
+    position: relative;
+}
+#color{
+    z-index: 10;
+    position: absolute;
+    top:30%;
+    left:10%;
+    background-color: white;
+} */
+
 .container{
 display: grid;
 grid-template-columns:1fr ;

@@ -161,6 +161,39 @@ contextmenu.addEventListener('click',(event)=>{
         filter[3].push(curr.target)
 
     }
+    if(event.target.id=="it12"){
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        rgb={r:0,g:0,b:0}
+        canvas.width = curr.target.width;
+        canvas.height = curr.target.height;
+    
+        ctx.drawImage(curr.target, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let color=""
+        for (let i = 0; i < imageData.data.length; i+=4){
+            rgb.r+=imageData.data[i]
+            rgb.g+=imageData.data[i+1]
+            rgb.b+=imageData.data[i+2]
+        }
+        if(rgb.r>rgb.g && rgb.r>rgb.b){
+            color="red"
+        }
+        if(rgb.g>rgb.r && rgb.g>rgb.b){
+            color="green"
+        }
+        if(rgb.b>rgb.r && rgb.b>rgb.g){
+            color="blue"
+        }
+        
+        let imageDiv=document.getElementById(curr.target.id+"d")
+        let colorpopup=document.createElement("div")
+        colorpopup.textContent=color
+        colorpopup.style.zIndex="100"
+        imageDiv.append(colorpopup)
+        
+
+    }
 });
 
 scope.addEventListener("click",(e)=>{
