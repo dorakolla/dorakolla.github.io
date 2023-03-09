@@ -12,6 +12,7 @@ let filter={0:[],'1':[],'2':[],'3':[]};
 filterBtn.addEventListener("click",()=>{
     container.style.display="none"
     let filtercont=document.createElement("div")
+    filtercont.className="filter"
     document.body.append(filtercont)
     filtermenu.className="visible"
     let inputs=document.querySelectorAll(".option")
@@ -191,7 +192,11 @@ contextmenu.addEventListener('click',(event)=>{
         colorpopup.textContent=color
         colorpopup.style.zIndex="100"
         imageDiv.append(colorpopup)
-        
+
+
+    }
+    if(event.target.id=="it13"){
+        downloadImage(curr.target.src)
 
     }
 });
@@ -201,6 +206,22 @@ scope.addEventListener("click",(e)=>{
         contextmenu.classList.remove("visible")
     }
 },false);
+
+async function downloadImage(imageSrc) {
+    const image = await fetch(imageSrc)
+    const imageBlog = await image.blob()
+    const imageURL = URL.createObjectURL(imageBlog)
+  
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = 'image.png'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+
+
 
 function reduceResolution(target){
 var img = new Image();
