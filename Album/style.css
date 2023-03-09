@@ -13,7 +13,7 @@
 
 h1{
 text-align:center;
-    color: #FFBFA9;
+    color: #3F497F;
     padding: 5px;
     font-size: 50px;
     font-weight: bold;
@@ -24,7 +24,11 @@ text-align:center;
 }
 body{
     width: 100%;
-    background-color: #0E8388;
+    background-color: #F8F5E4;
+}
+hr{
+    margin: 0;
+    padding: 0;
 }
 .container{
 display: grid;
@@ -52,12 +56,18 @@ img{
     place-items: center;
     gap:10px;
     }
+    #filtermenu{
+        width: 13%;
+    }
 }
 @media only screen and (min-width:768px) {
     .container{
         grid-template-columns:1fr 1fr 1fr;
         place-items: center;
         gap:10px;
+    }
+    #filtermenu{
+        left: 90%;
     }
 }
 @media only screen and (min-width:992px) {
@@ -83,11 +93,30 @@ i{
     border-radius: 5px;
     display: none;
     color: black;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: lighter;
     font-family: Arial, Helvetica, sans-serif;
 }
+#contextMenu.flex{
+    display: flex;
+    flex-direction: column;
 
+    
+}
+
+#filtermenu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:8%;
+    left: 90%;
+    background-color: beige;
+    padding: 10px 0px 10px 10px;
+    display: none;
+}
+#filtermenu.visible{
+    display: block;
+}
 #contextMenu .item{
     padding:8px 10px;
     cursor:pointer;

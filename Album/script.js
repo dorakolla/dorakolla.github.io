@@ -4,20 +4,34 @@ var options=document.querySelectorAll(".item")
 var submitCaptionbtn=document.querySelector("submitCaption")
 var container=document.getElementById("container")
 var filterBtn=document.getElementById("filter")
+var filtermenu=document.getElementById("filtermenu")
+
 var test;
 var curr;
-let filter={'greyscale':[]};
+let filter={0:[],'1':[],'2':[],'3':[]};
 filterBtn.addEventListener("click",()=>{
     container.style.display="none"
     let filtercont=document.createElement("div")
     document.body.append(filtercont)
-    filtercont.className="filter"
-    filter.greyscale.forEach(element => {
-        let imagediv=document.createElement("div")
-        imagediv.append(element)
-        filtercont.append(imagediv)
-    });
+    filtermenu.className="visible"
+    let inputs=document.querySelectorAll(".option")
+    for (let index = 0; index < 4; index++) {
+        inputs[index].addEventListener("change",()=>{
+
+            filter[index].forEach(ele => {
+                let imagediv=document.createElement("div")
+                imagediv.append(ele)
+                filtercont.append(imagediv)
+            });
+        })
+        
+    }
 })
+filterBtn.addEventListener("dblclick",()=>{
+    container.style.display="grid"
+    filtermenu.style.display="none"
+}
+)
 scope.addEventListener("contextmenu",(e)=>{
     e.preventDefault();
     // let events=Array.from(e.target.src)
@@ -25,6 +39,7 @@ scope.addEventListener("contextmenu",(e)=>{
     contextmenu.style.top=`${mouseY}px`
     contextmenu.style.left=`${mouseX}px`
     contextmenu.classList.add("visible")
+    contextmenu.classList.add("flex")
     curr=e
 },false);
 
@@ -38,7 +53,8 @@ contextmenu.addEventListener('click',(event)=>{
     }
     if(event.target.id=="it2"){
         curr.target.style.filter="grayscale(100%)";
-        filter.greyscale.push(curr.target)
+        filter[0].push(curr.target)
+        console.log(filter.greyscale)
     }
     if(event.target.id=="it3"){
         curr.target.style.filter="brightness(150%)"
@@ -63,29 +79,29 @@ contextmenu.addEventListener('click',(event)=>{
             curr.target.style.alignItems='center';
     }
     
-    if (event.target.id="it7"){
-        var newImageId=curr.target.id
-        var Imagediv=document.getElementById(newImageId+"d")
-        var inputcaption=document.createElement("input")
-        inputcaption.setAttribute("type", "text")
-        var div=document.createElement("div")
-        Imagediv.appendChild(inputcaption)
-        var submitCaptionbtn=document.createElement("button")
-        submitCaptionbtn.innerHTML="Submit"
-        Imagediv.appendChild(submitCaptionbtn)
-        submitCaptionbtn.addEventListener("click",()=>{
-            var thumbnail=inputcaption.value
-            var thumbnailh4=document.createElement("h4")
-            thumbnailh4.innerHTML=thumbnail
-            thumbnailh4.style.color="white"
-            Imagediv.appendChild(thumbnailh4)
-            inputcaption.remove()
-            submitCaptionbtn.remove()
-            curr.target.style.height="280px"
+    // if (event.target.id="it7"){
+    //     var newImageId=curr.target.id
+    //     var Imagediv=document.getElementById(newImageId+"d")
+    //     var inputcaption=document.createElement("input")
+    //     inputcaption.setAttribute("type", "text")
+    //     var div=document.createElement("div")
+    //     Imagediv.appendChild(inputcaption)
+    //     var submitCaptionbtn=document.createElement("button")
+    //     submitCaptionbtn.innerHTML="Submit"
+    //     Imagediv.appendChild(submitCaptionbtn)
+    //     submitCaptionbtn.addEventListener("click",()=>{
+    //         var thumbnail=inputcaption.value
+    //         var thumbnailh4=document.createElement("h4")
+    //         thumbnailh4.innerHTML=thumbnail
+    //         thumbnailh4.style.color="white"
+    //         Imagediv.appendChild(thumbnailh4)
+    //         inputcaption.remove()
+    //         submitCaptionbtn.remove()
+    //         curr.target.style.height="280px"
 
-        })
+    //     })
 
-    }
+    // }
     if (event.target.id=="it8"){
         console.log(generateQRCode(curr))
     }
@@ -106,6 +122,7 @@ contextmenu.addEventListener('click',(event)=>{
         ctx.putImageData(imageData, 0, 0);
 
         curr.target.src = canvas.toDataURL();
+        filter[1].push(curr.target)
 
     }
     if(event.target.id=="it10"){
@@ -123,6 +140,7 @@ contextmenu.addEventListener('click',(event)=>{
         ctx.putImageData(imageData, 0, 0);
 
         curr.target.src = canvas.toDataURL();
+        filter[2].push(curr.target)
 
     }
     if(event.target.id=="it11"){
@@ -140,6 +158,7 @@ contextmenu.addEventListener('click',(event)=>{
         ctx.putImageData(imageData, 0, 0);
 
         curr.target.src = canvas.toDataURL();
+        filter[3].push(curr.target)
 
     }
 });
