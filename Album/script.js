@@ -35,7 +35,6 @@ filterBtn.addEventListener("dblclick",()=>{
 )
 scope.addEventListener("contextmenu",(e)=>{
     e.preventDefault();
-    // let events=Array.from(e.target.src)
     const{clientX:mouseX,clientY:mouseY}=e;
     contextmenu.style.top=`${mouseY}px`
     contextmenu.style.left=`${mouseX}px`
@@ -65,7 +64,7 @@ contextmenu.addEventListener('click',(event)=>{
         curr.target.src=newImage
     }
     if (event.target.id=="it6"){
-        test=curr
+            test=curr
             var duplicateImage=document.createElement('IMG')
             var div=document.createElement("div")
             duplicateImage.src=curr.target.src
@@ -80,29 +79,18 @@ contextmenu.addEventListener('click',(event)=>{
             curr.target.style.alignItems='center';
     }
     
-    // if (event.target.id="it7"){
-    //     var newImageId=curr.target.id
-    //     var Imagediv=document.getElementById(newImageId+"d")
-    //     var inputcaption=document.createElement("input")
-    //     inputcaption.setAttribute("type", "text")
-    //     var div=document.createElement("div")
-    //     Imagediv.appendChild(inputcaption)
-    //     var submitCaptionbtn=document.createElement("button")
-    //     submitCaptionbtn.innerHTML="Submit"
-    //     Imagediv.appendChild(submitCaptionbtn)
-    //     submitCaptionbtn.addEventListener("click",()=>{
-    //         var thumbnail=inputcaption.value
-    //         var thumbnailh4=document.createElement("h4")
-    //         thumbnailh4.innerHTML=thumbnail
-    //         thumbnailh4.style.color="white"
-    //         Imagediv.appendChild(thumbnailh4)
-    //         inputcaption.remove()
-    //         submitCaptionbtn.remove()
-    //         curr.target.style.height="280px"
+        // if (event.target.id="it7"){
+        //     const canvas = document.createElement('canvas');
+        //     const ctx = canvas.getContext('2d');
+        
+        //     canvas.width = 200; // set the thumbnail width to 200 pixels
+        //     canvas.height = 200; // set the thumbnail height to 200 pixels
+        //     const originalImage = curr.target
+        //     ctx.drawImage(originalImage, 0, 0, originalImage.width, originalImage.height, 0, 0, canvas.width, canvas.height);
+        // const thumbnailDataURL = canvas.toDataURL();
+        // curr.target.src=thumbnailDataURL
 
-    //     })
-
-    // }
+        // }
     if (event.target.id=="it8"){
         console.log(generateQRCode(curr))
     }

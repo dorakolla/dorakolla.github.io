@@ -36,8 +36,7 @@ nav ul{
 nav ul a{
     text-decoration: none;
     color: white;
-
-    font-size: 15px;
+    font-size: 20px;
 }
 nav ul a:hover{ 
     color:yellow
@@ -90,13 +89,15 @@ padding: 120px;
     height: 130px;
 }
 .fa-solid{
-    padding: 10px;
+    padding: 20px;
+    font-size: 25px;
 }
 .fa-solid:hover{
     color: blueviolet;
 }
 .fa-brands{
     padding: 20px;
+    font-size: 25px;
 }
 .fa-brands:hover{
     color: blueviolet;
