@@ -7,6 +7,7 @@ let restartBtn=document.querySelector("#restart");
 let undoBtn=document.querySelector("#undo");
 let player1Btn=document.getElementById("1player")
 let player2Btn=document.getElementById("2player")
+let winner=document.querySelector("#winner");
 createBoard(boardSize);
 
 //select board size
@@ -76,6 +77,7 @@ function draw(){
 
 
 function playerGame(){
+    let flag=true;
     arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
     let player="X";
     let board=document.querySelector("#board"+boardSize);
@@ -92,16 +94,18 @@ function playerGame(){
         arr[e.target.id[0]][e.target.id[1]]=player;
         if (playerWon(arr)){
             setTimeout(() => {
-            
-             alert("Player "+player+" won");
+                winner.style.display="block"
+                winner.textContent="Player"+" "+player+" "+"won"+"😀";
             },100);
+            flag=false;
         }
         else{
             player=player=="X"?"O":"X";
         }
-        if (draw()){
+        if (draw() && flag){
             setTimeout(() => {
-                alert("Draw");
+                winner.style.display="block"
+                winner.textContent="It's a Draw"+"😀";
             },100);
         }
     }
@@ -116,6 +120,7 @@ restartBtn.addEventListener("click",function(e){
     o_arr=[];
     stack=[];
     let boxes=document.querySelectorAll(".box");
+    winner.style.display="none";
     boxes.forEach(element => {
         element.textContent="";
     });
@@ -126,6 +131,7 @@ player1Btn.addEventListener("click",function(e){
     arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
     let player="X";
     let board=document.querySelector("#board"+boardSize);
+    let flag=true;
     board.addEventListener("click",function(e){
     if(e.target.className=="box"){
         if (player=="X"){
@@ -139,7 +145,8 @@ player1Btn.addEventListener("click",function(e){
         arr[e.target.id[0]][e.target.id[1]]=player;
         if (playerWon(arr)){
             setTimeout(() => {
-                alert("Player "+player+" won");
+                winner.style.display="block"
+                winner.textContent="Player"+" "+player+" "+"won"+"😀";
             },100);
         }
         else{
@@ -164,8 +171,12 @@ player1Btn.addEventListener("click",function(e){
                 box.textContent="O";
                 arr[bestMove[0]][bestMove[1]]="O";
                 if (playerWon(arr)){
+                    flag=true
                     setTimeout(() => {
-                        alert("Player "+player+" won");
+                        
+                        winner.style.display="block"
+                        winner.textContent="Player"+ " "+player+" "+"won"+"😀";
+
                     },100);
                 }
                 else{
@@ -174,6 +185,13 @@ player1Btn.addEventListener("click",function(e){
             },200);
             
         }
+        
+    }
+    if (draw() && flag){
+        setTimeout(() => {
+            winner.style.display="block"
+            winner.textContent="It is a Draw"+"😀";
+        },100);
     }
 })
 }

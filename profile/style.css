@@ -6,6 +6,16 @@
     font-family:'carter one', cursive;
     
 }
+body{
+    background-image: url(https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c29saWQlMjBjb2xvcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+h1,h2,h3{
+    color: white;
+}
 .container{
     display: flex;
     gap: 100px;
@@ -21,15 +31,17 @@ nav ul{
     justify-content: space-around;
     gap: 20px;
     padding: 15px;
+
 }
 nav ul a{
     text-decoration: none;
-    color:black;
+    color: white;
+
     font-size: 15px;
 }
-/* nav ul a:hover{ 
-    background-color: grey;
-} */
+nav ul a:hover{ 
+    color:yellow
+}
 .Personaldetails{
 
 display: flex;
@@ -44,7 +56,8 @@ gap: 30px;
 }
 .carousel-itemactive{
 background-color: lightblue;
-padding: 100px;
+padding: 120px;
+
 }
 .first{
     display: flex;
@@ -171,4 +184,15 @@ a{
     .profile img{
         width:250px;
     }
+}
+#skillsImages{
+    display: flex;
+    gap: 30px;
+}
+img{
+    border-radius: 5px;
+}
+#skillsImages img{
+    width: 150px;
+    height: 150px;
 }

@@ -8,7 +8,7 @@ var filtermenu=document.getElementById("filtermenu")
 
 var test;
 var curr;
-let filter={0:[],'1':[],'2':[],'3':[]};
+let filter={'0':[],'1':[],'2':[],'3':[]};
 filterBtn.addEventListener("click",()=>{
     container.style.display="none"
     let filtercont=document.createElement("div")
