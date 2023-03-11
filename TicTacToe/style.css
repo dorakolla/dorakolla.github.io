@@ -60,6 +60,9 @@ button{
     cursor: pointer;
     font-size: 20px;
 }
+button:active{
+  transform: translateY(4px);
+}
 #select{
     padding: 5px 25px;
     font-size: 30px;
@@ -72,11 +75,11 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+/* button:hover{
     background-color: #ECF2FF;
     color: #3E54AC;
     border: 1px solid #3E54AC;
-}
+} */
     
 label{
     font-size: 20px;

@@ -5,6 +5,8 @@ let select=document.querySelector("#select");
 let boardSize=3;
 let restartBtn=document.querySelector("#restart");
 let undoBtn=document.querySelector("#undo");
+let player1Btn=document.getElementById("1player")
+let player2Btn=document.getElementById("2player")
 createBoard(boardSize);
 
 //select board size
@@ -32,7 +34,7 @@ select.addEventListener("change",function(e){
 
 }
 )
-playerGame();
+
 
 let x_arr=[];
 let o_arr=[];
@@ -43,7 +45,6 @@ undoBtn.addEventListener("click",function(){
     let x=stack.pop();
     let lastBox=document.getElementById(x);
     if (flag1==true && lastBox.textContent=="X" ){
-        console.log("hello");
         lastBox.innerText="";
         flag1=false
     }
@@ -53,6 +54,26 @@ undoBtn.addEventListener("click",function(){
     }
 }
 )
+
+player2Btn.addEventListener("click",function(e){
+    playerGame();
+}
+)
+
+function draw(){
+    let flag=true;
+    for (let i = 0; i < boardSize; i++) {
+        for (let j = 0; j < boardSize; j++) {
+            if(arr[i][j]==0){
+                flag=false;
+            }
+        }
+    }
+    return flag;
+}
+
+
+
 
 function playerGame(){
     arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
@@ -78,6 +99,11 @@ function playerGame(){
         else{
             player=player=="X"?"O":"X";
         }
+        if (draw()){
+            setTimeout(() => {
+                alert("Draw");
+            },100);
+        }
     }
  
     }
@@ -96,6 +122,66 @@ restartBtn.addEventListener("click",function(e){
 }
 )
 
+player1Btn.addEventListener("click",function(e){
+    arr=Array(boardSize).fill(0).map(()=>Array(boardSize).fill(0));
+    let player="X";
+    let board=document.querySelector("#board"+boardSize);
+    board.addEventListener("click",function(e){
+    if(e.target.className=="box"){
+        if (player=="X"){
+            x_arr.push(e.target.id);
+        }
+        else{
+            o_arr.push(e.target.id);
+        }
+        stack.push(e.target.id);
+        e.target.textContent=player;
+        arr[e.target.id[0]][e.target.id[1]]=player;
+        if (playerWon(arr)){
+            setTimeout(() => {
+                alert("Player "+player+" won");
+            },100);
+        }
+        else{
+            setTimeout(() => {
+                player=player=="X"?"O":"X";
+                let bestScore=-Infinity;
+                let bestMove;
+                for (let i = 0; i < boardSize; i++) {
+                    for (let j = 0; j < boardSize; j++) {
+                        if(arr[i][j]==0){
+                            arr[i][j]="O";
+                            let score=miniMax(arr,0,true);
+                            arr[i][j]=0;
+                            if(score>bestScore){
+                                bestScore=score;
+                                bestMove=i.toString()+j.toString();
+                            }
+                        }
+                    }
+                }
+                let box=document.getElementById(bestMove);
+                box.textContent="O";
+                arr[bestMove[0]][bestMove[1]]="O";
+                if (playerWon(arr)){
+                    setTimeout(() => {
+                        alert("Player "+player+" won");
+                    },100);
+                }
+                else{
+                    player=player=="X"?"O":"X";
+                }
+            },200);
+            
+        }
+    }
+})
+}
+)
+
+
+                
+
 function createBoard(){
     let board=document.createElement("div");
     board.id="board"+boardSize;
@@ -111,6 +197,43 @@ function createBoard(){
     container.removeChild(container.lastChild);
     container.appendChild(board);
     return board;
+}
+
+function miniMax(arr,depth,isMaximizing){
+    if(playerWon(arr)){
+        return 10;
+    }
+    else if(draw()){
+        return 0;
+    }
+    if(isMaximizing){
+        let bestScore=-Infinity;
+        for (let i = 0; i < boardSize; i++) {
+            for (let j = 0; j < boardSize; j++) {
+                if(arr[i][j]==0){
+                    arr[i][j]="O";
+                    let score=miniMax(arr,depth+1,false);
+                    arr[i][j]=0;
+                    bestScore=Math.max(score,bestScore);
+                }
+            }
+        }
+        return bestScore;
+    }
+    else{
+        let bestScore=Infinity;
+        for (let i = 0; i < boardSize; i++) {
+            for (let j = 0; j < boardSize; j++) {
+                if(arr[i][j]==0){
+                    arr[i][j]="X";
+                    let score=miniMax(arr,depth+1,true);
+                    arr[i][j]=0;
+                    bestScore=Math.min(score,bestScore);
+                }
+            }
+        }
+        return bestScore;
+    }
 }
 
 // check playerWon
@@ -155,7 +278,6 @@ function checkVertical(arr){
         }
         }
         if (flag){
-            console.log("hello");
             return true;
         }
     }

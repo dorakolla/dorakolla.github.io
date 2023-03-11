@@ -14,12 +14,13 @@
 h1{
 text-align:center;
     color: #3F497F;
-    padding: 5px;
+    padding: 10px;
     font-size: 50px;
     font-weight: bold;
     font-family:'carter one';
     text-shadow: 2px 2px 2px #000000;
     position:absolute;
+    top: 0;
     left: 40%;
 }
 body{
@@ -91,11 +92,12 @@ img{
 i{
     font-size: 30px;
     color: black;
-    padding: 20px;
+    padding-right: 5px;
 }
 .header{
     display: flex;
     justify-content: space-between;
+    padding: 10px;
 }
 #contextMenu{
     position: fixed;
@@ -133,6 +135,7 @@ i{
     padding:8px 10px;
     cursor:pointer;
     border-radius: 5px;
+    
 }
 #contextMenu:hover{
     background-color: #ECF2FF;
@@ -144,5 +147,9 @@ i{
 #contextMenu .item:hover{
     background-color: white;
     color: black;
+}
+.item{
+    padding:0;
+    margin:0;
 }
 
