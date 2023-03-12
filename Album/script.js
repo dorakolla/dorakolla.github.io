@@ -39,7 +39,6 @@ scope.addEventListener("contextmenu",(e)=>{
     contextmenu.style.top=`${mouseY}px`
     contextmenu.style.left=`${mouseX}px`
     contextmenu.classList.add("visible")
-    contextmenu.classList.add("flex")
     curr=e
 },false);
 
