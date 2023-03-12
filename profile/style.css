@@ -197,3 +197,24 @@ img{
     width: 150px;
     height: 150px;
 }
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+    height:350px;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: relative
+}
+.card-body button{
+    position: absolute;
+    top: 82%;
+
+    left: 30%;
+    text-decoration: none;
+
+}

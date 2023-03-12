@@ -15,22 +15,18 @@ select.addEventListener("change",function(e){
     if(select.value=="3"){
         boardSize=3;
         createBoard(boardSize);
-        playerGame();
     }
     else if(select.value=="4"){
         boardSize=4;
         createBoard(boardSize);
-        playerGame();
     }
     else if(select.value=="5"){
         boardSize=5;
         createBoard(boardSize);
-        playerGame();
     }
     else if(select.value=="6"){
         boardSize=6;
         createBoard(boardSize);
-        playerGame();
     }
 
 }
@@ -145,11 +141,13 @@ player1Btn.addEventListener("click",function(e){
         arr[e.target.id[0]][e.target.id[1]]=player;
         if (playerWon(arr)){
             setTimeout(() => {
+                flag=true;
                 winner.style.display="block"
                 winner.textContent="Player"+" "+player+" "+"won"+"😀";
             },100);
         }
         else{
+
             setTimeout(() => {
                 player=player=="X"?"O":"X";
                 let bestScore=-Infinity;
@@ -158,7 +156,9 @@ player1Btn.addEventListener("click",function(e){
                     for (let j = 0; j < boardSize; j++) {
                         if(arr[i][j]==0){
                             arr[i][j]="O";
+                            console.log(arr);
                             let score=miniMax(arr,0,true);
+                            console.log(score);
                             arr[i][j]=0;
                             if(score>bestScore){
                                 bestScore=score;
@@ -171,7 +171,7 @@ player1Btn.addEventListener("click",function(e){
                 box.textContent="O";
                 arr[bestMove[0]][bestMove[1]]="O";
                 if (playerWon(arr)){
-                    flag=true
+                    flag=true;
                     setTimeout(() => {
                         
                         winner.style.display="block"
@@ -226,8 +226,8 @@ function miniMax(arr,depth,isMaximizing){
     }
     if(isMaximizing){
         let bestScore=-Infinity;
-        for (let i = 0; i < boardSize; i++) {
-            for (let j = 0; j < boardSize; j++) {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
                 if(arr[i][j]==0){
                     arr[i][j]="O";
                     let score=miniMax(arr,depth+1,false);
@@ -240,8 +240,8 @@ function miniMax(arr,depth,isMaximizing){
     }
     else{
         let bestScore=Infinity;
-        for (let i = 0; i < boardSize; i++) {
-            for (let j = 0; j < boardSize; j++) {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
                 if(arr[i][j]==0){
                     arr[i][j]="X";
                     let score=miniMax(arr,depth+1,true);
