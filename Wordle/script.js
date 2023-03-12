@@ -7,8 +7,9 @@ let chance5=Array.from(document.querySelectorAll('#item21,#item22,#item23,#item2
 let chance6=Array.from(document.querySelectorAll('#item26,#item27,#item28,#item29,#item30'));
 let chances=[chance1,chance2,chance3,chance4,chance5,chance6];
 let i = 1;
-let checkremove=true;
+
     window.addEventListener("keydown",(e)=>{
+        let checkremove=true;
         let x = document.getElementById(`item${i}`);
         if (e.key=="Backspace"){
             checkremove=false;
@@ -18,10 +19,11 @@ let checkremove=true;
             x.innerText="";
 
         }
+        
         if (e.key!="Enter" && e.key!="Backspace" ){
             x.innerText=e.key;
         }
-        if (checkremove){
+        if (checkremove && e.key!="Enter" && e.key!="Backspace"){
             i++;
         }
 
