@@ -9,11 +9,20 @@ var filtermenu=document.getElementById("filtermenu")
 var test;
 var curr;
 let filter={'0':[],'1':[],'2':[],'3':[]};
+
+let f=true;
+let filtercont;
 filterBtn.addEventListener("click",()=>{
-    container.style.display="none"
-    let filtercont=document.createElement("div")
+
+    if(f){
+        f=false
+        filtercont=document.createElement("div")
+        filtercont.className="filter"
+        document.body.append(filtercont)
+    }
     filtercont.className="filter"
-    document.body.append(filtercont)
+    container.style.display="none"
+    // filtercont.style.display="block"
     filtermenu.className="visible"
     let inputs=document.querySelectorAll(".option")
     for (let index = 0; index < 4; index++) {
@@ -21,6 +30,9 @@ filterBtn.addEventListener("click",()=>{
 
             filter[index].forEach(ele => {
                 let imagediv=document.createElement("div")
+                if (index==0){
+                ele.style.filter="grayscale(100%)";
+                }
                 imagediv.append(ele)
                 filtercont.append(imagediv)
             });
@@ -31,6 +43,8 @@ filterBtn.addEventListener("click",()=>{
 filterBtn.addEventListener("dblclick",()=>{
     container.style.display="grid"
     filtermenu.style.display="none"
+    filtermenu.classList.remove("visible")
+    filtercont.style.display="none"
 }
 )
 scope.addEventListener("contextmenu",(e)=>{
@@ -52,11 +66,15 @@ contextmenu.addEventListener('click',(event)=>{
     }
     if(event.target.id=="it2"){
         curr.target.style.filter="grayscale(100%)";
-        filter[0].push(curr.target)
-        console.log(filter.greyscale)
+        
+        let img=document.createElement("img")
+        img.src=curr.target.src
+        filter[0].push(img)
+
     }
     if(event.target.id=="it3"){
         curr.target.style.filter="brightness(150%)"
+
     }
     if (event.target.id==="it4"){
         var newImage=reduceResolution(curr.target)
@@ -110,7 +128,9 @@ contextmenu.addEventListener('click',(event)=>{
         ctx.putImageData(imageData, 0, 0);
 
         curr.target.src = canvas.toDataURL();
-        filter[1].push(curr.target)
+        let img=document.createElement("img")
+        img.src=curr.target.src
+        filter[1].push(img)
 
     }
     if(event.target.id=="it10"){
@@ -128,7 +148,9 @@ contextmenu.addEventListener('click',(event)=>{
         ctx.putImageData(imageData, 0, 0);
 
         curr.target.src = canvas.toDataURL();
-        filter[2].push(curr.target)
+        let img=document.createElement("img")
+        img.src=curr.target.src
+        filter[2].push(img)
 
     }
     if(event.target.id=="it11"){
@@ -146,7 +168,9 @@ contextmenu.addEventListener('click',(event)=>{
         ctx.putImageData(imageData, 0, 0);
 
         curr.target.src = canvas.toDataURL();
-        filter[3].push(curr.target)
+        let img=document.createElement("img")
+        img.src=curr.target.src
+        filter[3].push(img)
 
     }
     if(event.target.id=="it12"){
