@@ -33,7 +33,7 @@ pool.getConnection((err, connection) => {
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname,'public', 'index.html'));
 });
 
 app.get('/script.js', (req, res) => {
