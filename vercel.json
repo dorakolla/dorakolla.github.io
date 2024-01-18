@@ -1,4 +1,4 @@
-{"projectId":"prj_YqLpjbtHBh4raiECI2LbmljjdRlA","orgId":"team_pwiYwaC9C5azkAiA9N7gGM6z",   
+{
     "version": 2,
     "builds": [
       {
@@ -15,5 +15,6 @@
     "env": {
       "PORT": 3000
     }
+    
   }
   
