@@ -6,7 +6,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "/server.js",
+      "src": "/Public/server.js",
       "use": "@vercel/node"
     }
   ],
@@ -17,7 +17,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/server.js"
+      "dest": "/Public/server.js"
     }
   ],
   "env": {
