@@ -2,12 +2,12 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 4000;
+const port = 3000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const snowflake = require('snowflake-sdk');
-
+app.use(express.static(__dirname));
 const connectionOptions = {
   account: 'qkb03942.us-east-1',
   username: 'Dora',
@@ -27,10 +27,10 @@ connection.connect(function(err, conn) {
     }
 });
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/script.js', (req, res) => {
