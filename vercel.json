@@ -1,11 +1,20 @@
 {
     "version": 2,
     "builds": [
-      { "src": "/public/**/*", "use": "@vercel/static" },
-      { "src": "/(.*)", "use": "@vercel/node" }
+      {
+        "src": "/public/script.js",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "/public/server.js",
+        "use": "@vercel/node"
+      }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "/$1" }
+      {
+        "src": "/(.*)",
+        "dest": "/public/$1"
+      }
     ],
     "env": {
       "PORT": "3000"
