@@ -1,4 +1,3 @@
-const baseUrl = 'https://dorakolla-github-io-mopp.vercel.app'; // Set your base URL here (e.g., 'http://localhost:3000' for local development)
 
 const knowledgeButton = document.querySelector(".knowledgeButton");
 const tradingButton = document.querySelector(".tradingButton");
@@ -32,7 +31,7 @@ function addQuote(tableName) {
     return;
   }
 
-  fetch(`${baseUrl}/addQuote`, {
+  fetch(`/addQuote`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
