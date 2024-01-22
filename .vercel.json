@@ -1,14 +1,27 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "/functions/index.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/functions/index.js", "dest": "/functions/server.js" }
-    ],
-    "env": {
-      "PORT": "3000"
-       
+  "version": 2,
+  "builds": [
+      {
+          "src": "index.js",
+          "use": "@vercel/node"
+      },
+      {
+          "src": "server.js",
+          "use": "@vercel/node"
+      },
+      {
+          "src": "public/(.*)",
+          "use": "@vercel/static"
       }
-  }
-  
+  ],
+  "routes": [
+      {
+          "src": "/public/(.*)",
+          "dest": "/public/$1"
+      },
+      {
+          "src": "/(.*)",
+          "dest": "index.js"
+      }
+  ]
+}
