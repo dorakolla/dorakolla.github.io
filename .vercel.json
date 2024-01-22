@@ -1,5 +1,14 @@
 {
-  "rewrites": [
-    { "source": "/myFunction/(.*)", "destination": "/functions/getRandomQuote/$1" }
-  ]
-}
+    "version": 2,
+    "builds": [
+      { "src": "/functions/index.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/functions/index.js", "dest": "/functions/server.js" }
+    ],
+    "env": {
+      "PORT": "3000"
+       
+      }
+  }
+  
