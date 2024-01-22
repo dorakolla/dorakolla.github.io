@@ -8,7 +8,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const snowflake = require('snowflake-sdk');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(__dirname));
 const connectionOptions = {
   account: 'qkb03942.us-east-1',
   username: 'Dora',
@@ -31,11 +30,11 @@ connection.connect(function(err, conn) {
 // app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname,'public', 'index.html'));
 });
 
-app.get('/script.js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'script.js'));
+app.get('/index.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.js'));
 });
 app.get('/getRandomQuote', (req, res) => {
     const tableName = req.query.tableName;
