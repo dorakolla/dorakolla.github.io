@@ -1,4 +1,4 @@
-// No need to define a base URL for Vercel
+const baseUrl = 'https://dorakolla-github-io-mopp.vercel.app'; // Set your base URL here (e.g., 'http://localhost:3000' for local development)
 
 const knowledgeButton = document.querySelector(".knowledgeButton");
 const tradingButton = document.querySelector(".tradingButton");
@@ -32,7 +32,7 @@ function addQuote(tableName) {
     return;
   }
 
-  fetch('/addQuote', {
+  fetch(`${baseUrl}/addQuote`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ refresh.addEventListener("click", function () {
 });
 
 function getRandomQuote(tableName) {
-  fetch(`/getRandomQuote?tableName=${tableName}`)
+  fetch(`${baseUrl}/getRandomQuote?tableName=${tableName}`)
     .then(response => response.json())
     .then(data => {
       displayQuote(data.quote[0]["QUOTES"]);
