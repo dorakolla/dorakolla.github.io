@@ -83,8 +83,7 @@ function getRandomQuote(tableName){
   fetch(`/getRandomQuote?tableName=${tableName}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data.quote);
-      displayQuote(data.quote[0]["quote"]);
+      displayQuote(data.quote[0]["QUOTES"]);
     })
     .catch(error => {
       console.error('Error:', error);

@@ -2,43 +2,21 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const mysql = require('mysql2/promise'); 
-const port = 3000;
-const mysql = require('mysql2');
+const port = 4000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const dbConfig = {
-  host: 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
-  user: 'HDSAbakwBGy7Vwd.root',
-  password: 'xES8HhQWeSQukywf',
-  database: 'insightvault',
-  port:4000,
-  ssl: {
-    rejectUnauthorized: false,
-  }
+const snowflake = require('snowflake-sdk');
+
+const connectionOptions = {
+  account: 'qkb03942.us-east-1',
+  username: 'Dora',
+  password: 'D@ra1192002',
+  warehouse: 'COMPUTE_WH',
+  database: 'QUOTES',
 };
 
-// Create a connection pool
-const pool = mysql.createPool(dbConfig);
-
-// Acquire a connection from the pool
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error('Error connecting to TiDB:', err);
-    return;
-  }
-
-  console.log('Connected to TiDB database.');
-
-  // Use the connection for querying or other database operations
-
-  // Release the connection back to the pool when done
-  connection.release();
-});
-
-Don't forget to handle errors and close the pool appropriately in a production environment
-
+const connection = snowflake.createConnection(connectionOptions);
 connection.connect(function(err, conn) {
     if (err) {
         console.error('Unable to connect: ' + err.message);
@@ -89,7 +67,7 @@ app.post('/addQuote', async (req, res) => {
     let id = 0;
 
     connection.execute({
-        sqlText: "SELECT MAX(ID) AS maxId FROM " + tableName,
+        sqlText: "SELECT MAX(ID) AS MAXID FROM " + tableName,
         complete: function (err, stmt, rows) {
             if (err) {
                 console.error('Failed to execute statement due to the following error: ' + err.message);
