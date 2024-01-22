@@ -79,7 +79,7 @@ refresh.addEventListener("click", function () {
   }
 });
 
-function getRandomQuote(tableName){
+function getRandomQuote(tableName) {
   fetch(`/getRandomQuote?tableName=${tableName}`)
     .then(response => response.json())
     .then(data => {
@@ -87,9 +87,9 @@ function getRandomQuote(tableName){
     })
     .catch(error => {
       console.error('Error:', error);
-    }
-    );
+    });
 }
+
 
 
 backButton.addEventListener("click", function () {
