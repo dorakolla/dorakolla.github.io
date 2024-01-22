@@ -1,10 +1,10 @@
 {
     "version": 2,
     "builds": [
-      { "src": "/index.js", "use": "@vercel/node" }
+      { "src": "/functions/index.js", "use": "@vercel/node" }
     ],
     "routes": [
-      { "src": "/index.js", "dest": "/server.js" }
+      { "src": "/functions/index.js", "dest": "/functions/server.js" }
     ],
     "env": {
       "PORT": "3000"
