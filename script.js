@@ -1,4 +1,4 @@
-
+const baseUrl = ''; // Set your base URL here (e.g., 'http://localhost:3000' for local development)
 
 const knowledgeButton = document.querySelector(".knowledgeButton");
 const tradingButton = document.querySelector(".tradingButton");
@@ -9,66 +9,65 @@ const mindButton = document.querySelector(".mindButton");
 const quote = document.querySelector(".quote");
 const refresh = document.querySelector(".refresh");
 const selectValue = document.querySelector("#contentType");
-const quoteInput=document.querySelector(".quoteInput")
-const quoteMessage=document.querySelector(".quoteMessage")
+const quoteInput = document.querySelector(".quoteInput");
+const quoteMessage = document.querySelector(".quoteMessage");
+
 function getValue() {
-  
   if (selectValue.value == "Knowledge") {
-    addQuote("KNOWLEDGEQUOTES")
+    addQuote("KNOWLEDGEQUOTES");
   } else if (selectValue.value == "Trading") {
-    addQuote("TRADINGQUOTES")
-  } else if(selectValue.value=="Mind") {
-    addQuote("MINDQUOTES")
-  } 
-  quoteInput.style.display="none";
-  quoteMessage.style.display="flex";
+    addQuote("TRADINGQUOTES");
+  } else if (selectValue.value == "Mind") {
+    addQuote("MINDQUOTES");
+  }
+  quoteInput.style.display = "none";
+  quoteMessage.style.display = "flex";
 }
+
 function addQuote(tableName) {
   const newQuote = document.querySelector("#newQuote").value;
 
   if (!newQuote) {
-      console.error('New quote is required.');
-      return;
+    console.error('New quote is required.');
+    return;
   }
 
-  fetch('/addQuote', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          tableName: tableName,
-          quote: newQuote,
-      }),
+  fetch(`${baseUrl}/addQuote`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      tableName: tableName,
+      quote: newQuote,
+    }),
   })
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
       console.log('Quote added successfully:', data);
-      
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error('Error adding quote:', error);
-  });
+    });
 }
-
-
-
 
 let quoteType = 0;
+
 tradingButton.addEventListener('click', () => {
   quoteType = 1;
-  getRandomQuote("TRADINGQUOTES")
+  getRandomQuote("TRADINGQUOTES");
 });
+
 mindButton.addEventListener('click', () => {
   quoteType = 2;
-  getRandomQuote("MINDQUOTES")
-}
-);
+  getRandomQuote("MINDQUOTES");
+});
+
 knowledgeButton.addEventListener("click", function () {
   quoteType = 0;
-  getRandomQuote("KNOWLEDGEQUOTES")
-}
-);
+  getRandomQuote("KNOWLEDGEQUOTES");
+});
+
 refresh.addEventListener("click", function () {
   if (quoteType === 0) {
     refreshQuote("KNOWLEDGEQUOTES");
@@ -80,7 +79,7 @@ refresh.addEventListener("click", function () {
 });
 
 function getRandomQuote(tableName) {
-  fetch(`/getRandomQuote?tableName=${tableName}`)
+  fetch(`${baseUrl}/getRandomQuote?tableName=${tableName}`)
     .then(response => response.json())
     .then(data => {
       displayQuote(data.quote[0]["QUOTES"]);
@@ -90,21 +89,19 @@ function getRandomQuote(tableName) {
     });
 }
 
-
-
 backButton.addEventListener("click", function () {
   buttonContainer.style.display = "flex";
   quote.style.display = "none";
   backButtonDiv.style.display = "none";
 });
-function refreshQuote(tableName) {
-  getRandomQuote(tableName)
-};
 
+function refreshQuote(tableName) {
+  getRandomQuote(tableName);
+}
 
 function displayQuote(quoteText) {
-  buttonContainer.style.display = "None";
-  quote.style.display = "Block";
-  quote.textContent = " ' " + quoteText + " ' ";
+  buttonContainer.style.display = "none";
+  quote.style.display = "block";
+  quote.textContent = `' ${quoteText} '`;
   backButtonDiv.style.display = "flex";
 }
