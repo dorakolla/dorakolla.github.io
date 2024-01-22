@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const snowflake = require('snowflake-sdk');
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname));
 const connectionOptions = {
   account: 'qkb03942.us-east-1',
@@ -38,11 +39,9 @@ app.get('/script.js', (req, res) => {
 });
 app.get('/getRandomQuote', (req, res) => {
     const tableName = req.query.tableName;
-
     if (!tableName) {
         return res.status(400).json({ error: 'Table name is required.' });
     }
-
     // Example: Retrieve a random quote from Snowflake and send it to the client
     connection.execute({
         sqlText: "SELECT * FROM "+tableName+"  ORDER BY RANDOM() LIMIT 1",
@@ -59,42 +58,49 @@ app.get('/getRandomQuote', (req, res) => {
 app.post('/addQuote', async (req, res) => {
     const tableName = req.body.tableName;
     const quote = req.body.quote;
-    console.log(tableName, quote);
-
+  
     if (!tableName || !quote) {
-        return res.status(400).json({ error: 'Table name and quote are required.' });
+      return res.status(400).json({ error: 'Table name and quote are required.' });
     }
-    let id = 0;
-
-    connection.execute({
-        sqlText: "SELECT MAX(ID) AS MAXID FROM " + tableName,
-        complete: function (err, stmt, rows) {
-            if (err) {
-                console.error('Failed to execute statement due to the following error: ' + err.message);
-                return res.status(500).send('Internal Server Error');
-                console.log(rows);
-            } else {
-                id = rows[0]["MAXID"] || 0;
-                id++;
-                // Insert the new quote with the incremented ID
-                connection.execute({
-                    sqlText: "INSERT INTO " + tableName + " (ID, QUOTES) VALUES (?, ?)",  // Replace QUOTES_COLUMN with the actual column name
-                    binds: [id, quote],
-                    complete: function (err, stmt, rows) {
-                        if (err) {
-                            console.error('Failed to execute statement due to the following error: ' + err.message);
-                            return res.status(500).send('Internal Server Error');
-                        } else {
-                            res.json({ success: true });
-                            
-                        }
-                    }
-                });
-            }
-        }
+  
+    const connection = snowflake.createConnection(connectionOptions);
+  
+    try {
+      await connection.connect();
+      const id = await getMaxId(tableName, connection);
+      const newId = id + 1;
+  
+      await connection.execute({
+        sqlText: `INSERT INTO ${tableName} (ID, QUOTES) VALUES (?, ?)`,
+        binds: [newId, quote],
+      });
+  
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error adding quote:', error);
+      res.status(500).send('Internal Server Error');
+    } finally {
+      if (connection) {
+        connection.destroy();
+      }
+    }
+  });
+  
+  async function getMaxId(tableName, connection) {
+    return new Promise((resolve, reject) => {
+      connection.execute({
+        sqlText: `SELECT MAX(ID) AS MAXID FROM ${tableName}`,
+        complete: (err, stmt, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            const maxId = rows[0]["MAXID"] || 0;
+            resolve(maxId);
+          }
+        },
+      });
     });
-    
-});
+  }
 app.delete('/deleteQuote' ,async (req, res) => {
     const tableName = req.body.tableName;
     const quote = req.body.quote;
