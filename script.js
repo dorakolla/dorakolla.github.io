@@ -78,7 +78,7 @@ refresh.addEventListener("click", function () {
 });
 
 function getRandomQuote(tableName) {
-  fetch(`/.netlify/functions/getRandomQuote?tableName=${tableName}`, { // Replace with your Vercel function route
+  fetch(`/getRandomQuote?tableName=${tableName}`, { // Replace with your Vercel function route
     method: 'GET',
   })
     .then(response => response.json())
