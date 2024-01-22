@@ -78,12 +78,21 @@ refresh.addEventListener("click", function () {
 });
 
 function getRandomQuote(tableName) {
-  fetch(`/getRandomQuote?tableName=${tableName}`, { // Replace with your Vercel function route
+  fetch(`/.vercel/functions/getRandomQuote?tableName=${tableName}`, {
     method: 'GET',
   })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then(data => {
-      displayQuote(data.quote[0]["QUOTES"]);
+      if (data.quote && data.quote.length > 0) {
+        displayQuote(data.quote[0]["QUOTES"]);
+      } else {
+        console.error('Error: Invalid response format or empty quote.');
+      }
     })
     .catch(error => {
       console.error('Error:', error);
