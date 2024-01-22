@@ -1,4 +1,4 @@
-const baseUrl = ''; // Set your base URL here (e.g., 'http://localhost:3000' for local development)
+// No need to define a base URL for Vercel
 
 const knowledgeButton = document.querySelector(".knowledgeButton");
 const tradingButton = document.querySelector(".tradingButton");
@@ -32,7 +32,7 @@ function addQuote(tableName) {
     return;
   }
 
-  fetch(`${baseUrl}/addQuote`, {
+  fetch('/addQuote', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ refresh.addEventListener("click", function () {
 });
 
 function getRandomQuote(tableName) {
-  fetch(`${baseUrl}/getRandomQuote?tableName=${tableName}`)
+  fetch(`/getRandomQuote?tableName=${tableName}`)
     .then(response => response.json())
     .then(data => {
       displayQuote(data.quote[0]["QUOTES"]);
